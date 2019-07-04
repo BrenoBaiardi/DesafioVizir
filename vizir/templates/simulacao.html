@@ -1,0 +1,64 @@
+{% extends "template.html" %}
+
+{% block conteudo %}
+        <!--<table class="table table-striped table-responsive table-bordered">-->
+            <!--<thead>-->
+    <!--<tr>-->
+        <!--<th>Nome</th>-->
+        <!--<th>Categoria</th>-->
+        <!--<th>Console</th>-->
+    <!--</tr>-->
+        <!--</thead>-->
+            <!--<tbody>-->
+                <!--<tr>-->
+                    <!--<td>A</td>-->
+                    <!--<td>B</td>-->
+                    <!--<td>C</td>-->
+                <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+
+    <form action = "/criar" method = "post">
+        <h2>Simulação de Plano</h2>
+        <h4>Insira as informações para simulação:</h4>
+        <div style="width:400px" align="left">
+            <div>
+                <label>Selecionar DDD Origem</label>
+                <select id=cbOrigem  name="origem" required>
+                    <option></option>
+                    {%for ddd in catalogo_ddd%}
+                    <option value = {{ddd}} >{{ddd}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+            <div>
+                <label><br>Selecionar DDD Destino</label>
+                <select id=cbDestino name="destino" required>
+                    <option></option>
+                    {%for ddd in catalogo_ddd%}
+                    <option value = {{ddd}} required>{{ddd}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+            <div>
+                <label><br>Selecionar Plano</label>
+                <select id=cbPlano name="plano" required>
+                    <option></option>
+                    {%for plano in catalogo_planos%}
+                    <option value = {{plano}} required>{{plano}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+        </div>
+        <label>Quantidade de minutos falados:</label>
+        <div style="width:100px" align="left">
+            <input type="number" size="10" id="console" name="minutos_falados" class="form-control" required>
+            <button type="submit" class="btn btn-primary btn-salvar">Simular Valores</button>
+        </div>
+        <div >
+            <h4>Resultado da simulação:</h4>
+            Valor a pagar Plano FaleMais  (R$): {{resultado_promo}}<br>
+            Valor a pagar Plano Comum     (R$): {{resultado_comum}}</h1>
+        </div>
+    </form>
+{% endblock %}
